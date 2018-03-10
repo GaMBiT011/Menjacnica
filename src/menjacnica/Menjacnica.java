@@ -2,48 +2,29 @@ package menjacnica;
 
 import java.util.LinkedList;
 
+import menjacnica.interfejs.MenjacnicaInterfejs;
 import menjacnica.valuta.Valuta;
 
-public class Menjacnica {
-	String nazivMenjacnice;
+public class Menjacnica implements MenjacnicaInterfejs {
 	LinkedList<Valuta> valute = new LinkedList<>();
 
-	public String getNazivMenjacnice() {
-		return nazivMenjacnice;
+	public void dodajKurs(String punNaziv, int dan, int mesec, int godina, double prodajniKurs, double srednjiKurs,
+			double kupovniKurs) {
+	
+		
 	}
 
-	public void setNazivMenjacnice(String nazivMenjacnice) throws Exception {
-		if (nazivMenjacnice == null || nazivMenjacnice.length() < 1)
-			throw new Exception("Naziv ne moze biti null ili prazan string");
-		else
-			this.nazivMenjacnice = nazivMenjacnice;
+	public void obrisiKurs(String punNaziv, int dan, int mesec, int godina, double prodajniKurs, double srednjiKurs,
+			double kupovniKurs) {
+	
+		
 	}
 
-	public String toString() {
-		return "Menjacnica: " + nazivMenjacnice + ", valute:\n " + valute;
+
+	public double nadjiKurs(String punNaziv, int dan, int mesec, int godina) {
+		
+		return 0;
 	}
 
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nazivMenjacnice == null) ? 0 : nazivMenjacnice.hashCode());
-		return result;
-	}
-
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Menjacnica other = (Menjacnica) obj;
-		if (nazivMenjacnice == null) {
-			if (other.nazivMenjacnice != null)
-				return false;
-		} else if (!nazivMenjacnice.equals(other.nazivMenjacnice))
-			return false;
-		return true;
-	}
 
 }
