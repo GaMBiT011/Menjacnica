@@ -12,8 +12,11 @@ public class Menjacnica {
 		return nazivMenjacnice;
 	}
 
-	public void setNazivMenjacnice(String nazivMenjacnice) {
-		this.nazivMenjacnice = nazivMenjacnice;
+	public void setNazivMenjacnice(String nazivMenjacnice) throws Exception {
+		if (nazivMenjacnice == null || nazivMenjacnice.length() < 1)
+			throw new Exception("Naziv ne moze biti null ili prazan string");
+		else
+			this.nazivMenjacnice = nazivMenjacnice;
 	}
 
 	public String toString() {

@@ -2,6 +2,8 @@ package menjacnica.valuta;
 
 import java.util.GregorianCalendar;
 
+import jdk.nashorn.internal.runtime.ECMAException;
+
 public class Valuta {
 	String punNaziv;
 	String skraceniNaziv;
@@ -14,31 +16,43 @@ public class Valuta {
 		return punNaziv;
 	}
 
-	public void setPunNaziv(String punNaziv) {
-		this.punNaziv = punNaziv;
+	public void setPunNaziv(String punNaziv) throws Exception {
+		if (punNaziv == null || punNaziv.length() < 1)
+			throw new Exception("Naziv ne moze biti null ili prazan string");
+		else
+			this.punNaziv = punNaziv;
 	}
 
 	public String getSkraceniNaziv() {
 		return skraceniNaziv;
 	}
 
-	public void setSkraceniNaziv(String skraceniNaziv) {
-		this.skraceniNaziv = skraceniNaziv;
+	public void setSkraceniNaziv(String skraceniNaziv) throws Exception {
+		if (skraceniNaziv == null || skraceniNaziv.length() < 1)
+			throw new Exception("Naziv ne moze biti null ili prazan string");
+		else
+			this.skraceniNaziv = skraceniNaziv;
 	}
 
 	public GregorianCalendar getDatum() {
 		return datum;
 	}
 
-	public void setDatum(GregorianCalendar datum) {
-		this.datum = datum;
+	public void setDatum(GregorianCalendar datum) throws Exception {
+		if (datum == null || datum.after(new GregorianCalendar()))
+			throw new Exception("datum je null ili nije validan.");
+		else
+			this.datum = datum;
 	}
 
 	public double getProdajniKurs() {
 		return prodajniKurs;
 	}
 
-	public void setProdajniKurs(double prodajniKurs) {
+	public void setProdajniKurs(double prodajniKurs) throws Exception {
+		if(prodajniKurs <=0)
+			throw new Exception("Kurs nije dobro unet!");
+		else
 		this.prodajniKurs = prodajniKurs;
 	}
 
@@ -46,7 +60,10 @@ public class Valuta {
 		return srednjiKurs;
 	}
 
-	public void setSrednjiKurs(double srednjiKurs) {
+	public void setSrednjiKurs(double srednjiKurs) throws Exception {
+		if(srednjiKurs <=0)
+			throw new Exception("Kurs nije dobro unet!");
+		else
 		this.srednjiKurs = srednjiKurs;
 	}
 
@@ -54,7 +71,10 @@ public class Valuta {
 		return kupovniKurs;
 	}
 
-	public void setKupovniKurs(double kupovniKurs) {
+	public void setKupovniKurs(double kupovniKurs) throws Exception {
+		if(kupovniKurs <=0)
+			throw new Exception("Kurs nije dobro unet!");
+		else
 		this.kupovniKurs = kupovniKurs;
 	}
 
@@ -67,6 +87,7 @@ public class Valuta {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((datum == null) ? 0 : datum.hashCode());
 		result = prime * result + ((punNaziv == null) ? 0 : punNaziv.hashCode());
 		return result;
 	}
@@ -79,6 +100,11 @@ public class Valuta {
 		if (getClass() != obj.getClass())
 			return false;
 		Valuta other = (Valuta) obj;
+		if (datum == null) {
+			if (other.datum != null)
+				return false;
+		} else if (!datum.equals(other.datum))
+			return false;
 		if (punNaziv == null) {
 			if (other.punNaziv != null)
 				return false;
