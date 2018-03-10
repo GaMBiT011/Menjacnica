@@ -58,4 +58,33 @@ public class Valuta {
 		this.kupovniKurs = kupovniKurs;
 	}
 
+	public String toString() {
+		return "Valuta:\t punNaziv: " + punNaziv + "\t skraceniNaziv: " + skraceniNaziv + "\n datum: " + datum
+				+ "\n prodajniKurs: " + prodajniKurs + "\n srednjiKurs: " + srednjiKurs + "\n kupovniKurs: "
+				+ kupovniKurs + "\n";
+	}
+
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((punNaziv == null) ? 0 : punNaziv.hashCode());
+		return result;
+	}
+
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Valuta other = (Valuta) obj;
+		if (punNaziv == null) {
+			if (other.punNaziv != null)
+				return false;
+		} else if (!punNaziv.equals(other.punNaziv))
+			return false;
+		return true;
+	}
+
 }
