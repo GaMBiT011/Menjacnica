@@ -17,19 +17,39 @@ public class Menjacnica implements MenjacnicaInterfejs {
 		v.setProdajniKurs(prodajniKurs);
 		v.setSrednjiKurs(srednjiKurs);
 		v.setKupovniKurs(kupovniKurs);
-	}
 
-	public void obrisiKurs(String punNaziv, int dan, int mesec, int godina, double prodajniKurs, double srednjiKurs,
-			double kupovniKurs) {
+}
+
+	public void obrisiKurs(String punNaziv, int dan, int mesec, int godina) {
+		GregorianCalendar datum = new GregorianCalendar(godina,mesec,dan);
+		Valuta v =new Valuta();
+		try {
+			v.setPunNaziv(punNaziv);
+			v.setDatum(datum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i < valute.size(); i++) {
+			if(valute.get(i).equals(v)) {
+				valute.remove(i);
+				break;
+			}
+		}
 	
-		
+
 	}
-
-
 	public double nadjiKurs(String punNaziv, int dan, int mesec, int godina) {
-		
-		
-		
+		Valuta v =new Valuta();
+		try {
+			v.setPunNaziv(punNaziv);
+			v.setDatum(new GregorianCalendar(godina,mesec,dan));
+		} catch (Exception e) {
+		}
+		for (int i = 0; i < valute.size(); i++) {
+			if(valute.contains(v)) {
+				return valute.get(i).getSrednjiKurs();
+			}
+		}
 		return 0;
 	}
 

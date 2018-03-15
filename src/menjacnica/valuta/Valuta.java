@@ -2,8 +2,6 @@ package menjacnica.valuta;
 
 import java.util.GregorianCalendar;
 
-import jdk.nashorn.internal.runtime.ECMAException;
-
 public class Valuta {
 	String punNaziv;
 	String skraceniNaziv;
